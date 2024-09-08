@@ -1,22 +1,22 @@
-//Уравнения (начиная с варианта №6)
+//РЈСЂР°РІРЅРµРЅРёСЏ (РЅР°С‡РёРЅР°СЏ СЃ РІР°СЂРёР°РЅС‚Р° в„–6)
 let sixth = fun (x: float) -> x + cos (x ** 0.52 + 2.)
 let seventh = fun (x: float) -> 3. * (log x) ** 2. + 6. * log x - 5.
 let eigth = fun (x: float) -> 0.6 * 3. ** x - 2.3 * x - 3.
 
-//Дифференциалы для метода Ньютона (вычислены с помощью - https://math.semestr.ru/math/differential.php)
+//Р”РёС„С„РµСЂРµРЅС†РёР°Р»С‹ РґР»СЏ РјРµС‚РѕРґР° РќСЊСЋС‚РѕРЅР° (РІС‹С‡РёСЃР»РµРЅС‹ СЃ РїРѕРјРѕС‰СЊСЋ - https://math.semestr.ru/math/differential.php)
 let sixthDiff = fun (x: float) -> 1. - 0.52 * sin (x ** 0.52 + 2.) * (x ** (-0.48))
 let seventhDiff = fun (x: float) -> 6. * log x / x + 6. / x
 let eigthDiff = fun (x: float) -> 0.6 * log 3. * 3. ** x - 2.3
 
-//Фи-функции для метода простых итераций  (вычислены с помощью - https://math.semestr.ru/optim/iteration_method.php)
+//Р¤Рё-С„СѓРЅРєС†РёРё РґР»СЏ РјРµС‚РѕРґР° РїСЂРѕСЃС‚С‹С… РёС‚РµСЂР°С†РёР№  (РІС‹С‡РёСЃР»РµРЅС‹ СЃ РїРѕРјРѕС‰СЊСЋ - https://math.semestr.ru/optim/iteration_method.php)
 let sixthPhi = fun (x: float) -> -cos (x ** 0.52 + 2.)
 let seventhPhi = fun (x: float) -> exp ((5. - 6. * log x) / 3.) 
 let eigthPhi = fun (x: float) -> (0.6 * 3. ** x - 3.) / 2.3
 
-//епсилон (заданная точность)
+//РµРїСЃРёР»РѕРЅ (Р·Р°РґР°РЅРЅР°СЏ С‚РѕС‡РЅРѕСЃС‚СЊ)
 let epsilon = 0.1 ** 5
 
-//Метод бисекции (источник - https://en.wikipedia.org/wiki/Bisection_method, дата обращение - 07.09.2024)
+//РњРµС‚РѕРґ Р±РёСЃРµРєС†РёРё (РёСЃС‚РѕС‡РЅРёРє - https://en.wikipedia.org/wiki/Bisection_method, РґР°С‚Р° РѕР±СЂР°С‰РµРЅРёРµ - 07.09.2024)
 let bisection func (left : float) (right : float) = 
     let rec iter left right = 
         let mid = (left + right) / 2.
@@ -26,7 +26,7 @@ let bisection func (left : float) (right : float) =
     iter left right
 
     
-//Метод простых итераций (источник - https://www.simumath.com/library/book.html?code=Alg_Equations_Iterations, дата обращения - 06.09.2024)
+//РњРµС‚РѕРґ РїСЂРѕСЃС‚С‹С… РёС‚РµСЂР°С†РёР№ (РёСЃС‚РѕС‡РЅРёРє - https://www.simumath.com/library/book.html?code=Alg_Equations_Iterations, РґР°С‚Р° РѕР±СЂР°С‰РµРЅРёСЏ - 06.09.2024)
 let iterations phi x0 = 
     let rec iter x =
         let x' = phi x
@@ -34,7 +34,7 @@ let iterations phi x0 =
         else iter x'
     iter x0
 
-//Метод Ньютона (истоничк - https://en.wikipedia.org/wiki/Newton%27s_method, дата обращение - 08.09)
+//РњРµС‚РѕРґ РќСЊСЋС‚РѕРЅР° (РёСЃС‚РѕРЅРёС‡Рє - https://en.wikipedia.org/wiki/Newton%27s_method, РґР°С‚Р° РѕР±СЂР°С‰РµРЅРёСЏ - 08.09.2024)
 let newton func diff_func (x0: float) =
     let rec iter x =
         let x' = x - (func x) / (diff_func x)
@@ -42,33 +42,33 @@ let newton func diff_func (x0: float) =
         else iter x'
     iter x0 
 
-//Создание строк для вывода красивой таблицы
+//РЎРѕР·РґР°РЅРёРµ СЃС‚СЂРѕРє РґР»СЏ РІС‹РІРѕРґР° РєСЂР°СЃРёРІРѕР№ С‚Р°Р±Р»РёС†С‹
 let create_table_row equation_num interval method_name root_value =
     sprintf "| %-16d | %-13s | %-10s | %-10.7f |" equation_num interval method_name root_value
 
-//Решаем уравнения численными методами
+//Р РµС€Р°РµРј СѓСЂР°РІРЅРµРЅРёСЏ С‡РёСЃР»РµРЅРЅС‹РјРё РјРµС‚РѕРґР°РјРё
 let bisection_results = 
-    [ (1, "0.5-1", "Бисекция", bisection sixth 0.5 1.)
-      (2, "1-3", "Бисекция", bisection seventh 1. 3.)
-      (3, "2-3", "Бисекция", bisection eigth 2. 3.) ]
+    [ (1, "0.5-1", "ГЃГЁГ±ГҐГЄГ¶ГЁГї", bisection sixth 0.5 1.)
+      (2, "1-3", "ГЃГЁГ±ГҐГЄГ¶ГЁГї", bisection seventh 1. 3.)
+      (3, "2-3", "ГЃГЁГ±ГҐГЄГ¶ГЁГї", bisection eigth 2. 3.) ]
 
 let iterations_results =
-    [ (1, "0.5", "Итерации", iterations sixth sixthPhi 0.5)
-      (2, "1.5", "Итерации", iterations seventh seventhPhi 1.5)
-      (3, "2.5", "Итерации", iterations eigth eigthPhi 2.5) ]
+    [ (1, "0.5", "Г€ГІГҐГ°Г Г¶ГЁГЁ", iterations sixth sixthPhi 0.5)
+      (2, "1.5", "Г€ГІГҐГ°Г Г¶ГЁГЁ", iterations seventh seventhPhi 1.5)
+      (3, "2.5", "Г€ГІГҐГ°Г Г¶ГЁГЁ", iterations eigth eigthPhi 2.5) ]
 
 let newton_results =
-    [ (1, "0.75", "Ньютон", newton sixth sixthDiff 0.75)
-      (2, "2", "Ньютон", newton seventh seventhDiff 2.)
-      (3, "2.5", "Ньютон", newton eigth eigthDiff 2.5) ]
+    [ (1, "0.75", "ГЌГјГѕГІГ®Г­", newton sixth sixthDiff 0.75)
+      (2, "2", "ГЌГјГѕГІГ®Г­", newton seventh seventhDiff 2.)
+      (3, "2.5", "ГЌГјГѕГІГ®Г­", newton eigth eigthDiff 2.5) ]
 
-//Формируем красивую таблицу
-let title = "| Номер уравнения  | x0            | Метод      | Корень     |\n|------------------|---------------|------------|------------|"
+//Р¤РѕСЂРјРёСЂСѓРµРј РєСЂР°СЃРёРІСѓСЋ С‚Р°Р±Р»РёС†Сѓ
+let title = "| РќРѕРјРµСЂ СѓСЂР°РІРЅРµРЅРёСЏ  | x0            | РњРµС‚РѕРґ       | РљРѕСЂРµРЅСЊ     |\n|------------------|---------------|------------|------------|"
 let tableBisection = bisection_results |> List.map (fun (num, interval, method_name, root) -> create_table_row num interval method_name root)
 let tableIteraytions = iterations_results |> List.map (fun (num, interval, method_name, root) -> create_table_row num interval method_name root)
 let tableNewton = newton_results |> List.map (fun (num, interval, method_name, root) -> create_table_row num interval method_name root)
 
 let full_table = title + "\n" + String.concat "\n" (tableBisection @ tableIteraytions @ tableNewton)
 
-//Выводим красивую таблицу
+//Р’С‹РІРѕРґРёРј РєСЂР°СЃРёРІСѓСЋ С‚Р°Р±Р»РёС†Сѓ
 printfn "%s" full_table
