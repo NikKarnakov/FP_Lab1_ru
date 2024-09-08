@@ -48,19 +48,19 @@ let create_table_row equation_num interval method_name root_value =
 
 //Решаем уравнения численными методами
 let bisection_results = 
-    [ (1, "0.5-1", "Áèñåêöèÿ", bisection sixth 0.5 1.)
-      (2, "1-3", "Áèñåêöèÿ", bisection seventh 1. 3.)
-      (3, "2-3", "Áèñåêöèÿ", bisection eigth 2. 3.) ]
+    [ (1, "0.5-1", "Бисекция", bisection sixth 0.5 1.)
+      (2, "1-3", "Бисекция", bisection seventh 1. 3.)
+      (3, "2-3", "Бисекция", bisection eigth 2. 3.) ]
 
 let iterations_results =
-    [ (1, "0.5", "Èòåðàöèè", iterations sixth sixthPhi 0.5)
-      (2, "1.5", "Èòåðàöèè", iterations seventh seventhPhi 1.5)
-      (3, "2.5", "Èòåðàöèè", iterations eigth eigthPhi 2.5) ]
+    [ (1, "0.5", "Итерации", iterations sixth sixthPhi 0.5)
+      (2, "1.5", "Итерации", iterations seventh seventhPhi 1.5)
+      (3, "2.5", "Итерации", iterations eigth eigthPhi 2.5) ]
 
 let newton_results =
-    [ (1, "0.75", "Íüþòîí", newton sixth sixthDiff 0.75)
-      (2, "2", "Íüþòîí", newton seventh seventhDiff 2.)
-      (3, "2.5", "Íüþòîí", newton eigth eigthDiff 2.5) ]
+    [ (1, "0.75", "Ньютон", newton sixth sixthDiff 0.75)
+      (2, "2", "Ньютон", newton seventh seventhDiff 2.)
+      (3, "2.5", "Ньютон", newton eigth eigthDiff 2.5) ]
 
 //Формируем красивую таблицу
 let title = "| Номер уравнения  | x0            | Метод       | Корень     |\n|------------------|---------------|------------|------------|"
